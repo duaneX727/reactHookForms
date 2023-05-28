@@ -15,7 +15,9 @@ type FormValues = {
   phoneNumbers: string[];
   phNumbers: {
     number: string;
-  }[]
+  }[];
+  age: number;
+  dob: Date;
 };
 // async () => {
   //const response = await fetch("https://jsonplaceholder.typicode.com/users/1");
@@ -42,6 +44,8 @@ type FormValues = {
         },
       phoneNumbers: ["","",],
       phNumbers: [{number: ''}],
+      age: 0,
+      dob: new Date()
     },
    });
    const {register, control, handleSubmit, formState} = form;
@@ -168,6 +172,22 @@ type FormValues = {
               })}>Add phone number
               </button>
             </div>
+          </div>
+          <div className='form-control'>
+            <label htmlFor="channel">Age</label>
+            <input type="number" id="age" {...register("age",{
+            valueAsNumber: true,
+            required: "Age is required",
+            })}/>
+            <p className='error'>{errors.age?.message}</p>
+          </div>
+          <div className='form-control'>
+            <label htmlFor="dob">Date of Birth</label>
+            <input type="date" id="dob" {...register("dob",{
+            valueAsDate: true,
+            required: "Date of Bitrth is required",
+            })}/>
+            <p className='error'>{errors.dob?.message}</p>
           </div>
           <button>Submit</button>
         </form>
