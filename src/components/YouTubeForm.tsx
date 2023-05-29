@@ -49,7 +49,10 @@ type FormValues = {
       dob: new Date()
     },
    });
-   const {register, control, handleSubmit, formState, watch, getValues} = form;
+   const {register, control, 
+          handleSubmit, formState, 
+          watch, getValues, 
+          setValue} = form;
 
    const {errors} = formState;
    const {fields, append, remove} = useFieldArray({
@@ -68,6 +71,13 @@ type FormValues = {
    }, [watch]);
    const handleGetValues = () => {
     console.log("Get values", getValues("social"))
+   }
+   const handleSetValues = () => {
+    console.log("Set values", setValue("username","", {
+      shouldValidate: true,
+      shouldDirty: true,
+      shouldTouch: true
+    }))
    }
    //const watchForm = watch();
 
@@ -205,6 +215,7 @@ type FormValues = {
           </div>
           <button>Submit</button>
           <button type="button" onClick={handleGetValues}>Get values</button>
+          <button type="button" onClick={handleSetValues}>Set values</button>
         </form>
         <DevTool control={control}/>
       </div>
