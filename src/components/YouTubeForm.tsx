@@ -49,7 +49,7 @@ type FormValues = {
       dob: new Date()
     },
    });
-   const {register, control, handleSubmit, formState, watch} = form;
+   const {register, control, handleSubmit, formState, watch, getValues} = form;
 
    const {errors} = formState;
    const {fields, append, remove} = useFieldArray({
@@ -66,7 +66,9 @@ type FormValues = {
     })
     return () => subscription.unsubscribe();
    }, [watch]);
-
+   const handleGetValues = () => {
+    console.log("Get values", getValues("social"))
+   }
    //const watchForm = watch();
 
    renderCount++
@@ -202,6 +204,7 @@ type FormValues = {
             <p className='error'>{errors.dob?.message}</p>
           </div>
           <button>Submit</button>
+          <button type="button" onClick={handleGetValues}>Get values</button>
         </form>
         <DevTool control={control}/>
       </div>
