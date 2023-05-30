@@ -95,13 +95,15 @@ type FormValues = {
          <form onSubmit={handleSubmit(onSubmit)} noValidate>
           <div className='form-control'>
           <label htmlFor="username">Username</label>
-          <input type="text" id="username"
-          {...register("username",{
-            required: {
-              value: true,
-              message: "Username is required"
-            },
-          })}/>
+          <input type="text" 
+                 id="username"
+                 
+                 {...register("username",{
+                  required: {
+                    value: true,
+                    message: "Username is required"
+                 },
+               })}/>
           <p className='error'>{errors.username?.message}</p>
           </div>
           <div className='form-control'>
@@ -139,7 +141,9 @@ type FormValues = {
           </div>
           <div className='form-control'>
             <label htmlFor="twitter">Twitter</label>
-            <input type="text" id="twitter" {...register("social.twitter",{
+            <input type="text" id="twitter" 
+            {...register("social.twitter",{
+              disabled: watch("channel") === "",
             required: {
               value: true,
               message: "Twitter name is required"
